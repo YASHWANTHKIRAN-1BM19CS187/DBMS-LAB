@@ -1,9 +1,4 @@
 create database banking;
-/*BRANCH (branch-name: String, branch-city: String, assets: real)
-ACCOUNTS (accno: int, branch-name: String, balance: real)
-DEPOSITOR (customer-name: String, customer-street: String, customer-city: String)
-LOAN (loan-number: int, branch-name: String, amount: real)
-BORROWER (customer-name: String, loan-number: int) */
 use banking;
 create table BRANCH(branch_name varchar(20),branch_city varchar(10),assets real,primary
 key(branch_name));
