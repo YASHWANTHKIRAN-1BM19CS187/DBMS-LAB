@@ -1,8 +1,3 @@
- TRISHUL M
- D1
- 13/05/21
-
- SUPPLIER DATABASE:
 create database SUPPLIER;
 use SUPPLIER;
 create table SUPPLIERS(sid BIGINT(5) primary key, sname
