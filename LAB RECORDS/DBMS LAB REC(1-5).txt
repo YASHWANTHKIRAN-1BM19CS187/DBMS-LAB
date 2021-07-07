@@ -1,0 +1,1452 @@
+
+
+
+
+
+
+
+mysql> create database Insurance;
+Query OK, 1 row affected (0.19 sec)
+
+mysql> use Insurance;
+Database changed
+mysql> create table Insurance.person(driver_id varchar(10),name varchar(10),address varchar(10),primary
+    -> key(driver_id));
+Query OK, 0 rows affected (1.02 sec)
+
+mysql> desc Insurance.person;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| driver_id | varchar(10) | NO   | PRI | NULL    |       |
+| name      | varchar(10) | YES  |     | NULL    |       |
+| address   | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into Insurance.person values('&driver_id','&name','&address');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into Insurance.person values('A01','MSD','Banglore');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into Insurance.person values('A02','VK','CHENNAI');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into Insurance.person values('A03','RS','KERALA');
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into Insurance.person values('A04','SR','UP');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Insurance.person values('A05','KP','ENG');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from Insurance.person;
++------------+-------+----------+
+| driver_id  | name  | address  |
++------------+-------+----------+
+| &driver_id | &name | &address |
+| A01        | MSD   | Banglore |
+| A02        | VK    | CHENNAI  |
+| A03        | RS    | KERALA   |
+| A04        | SR    | UP       |
+| A05        | KP    | ENG      |
++------------+-------+----------+
+6 rows in set (0.00 sec)
+
+mysql>
+mysql> create table Insurance.car(regno varchar(10),model varchar(10),year int,primary key(regno));
+Query OK, 0 rows affected (0.36 sec)
+
+mysql> desc Insurance.car;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| regno | varchar(10) | NO   | PRI | NULL    |       |
+| model | varchar(10) | YES  |     | NULL    |       |
+| year  | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into Insurance.car values('&reg_num','&model','1');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into Insurance.car values('KA031181','Lancer', 1957);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into Insurance.car values('KA095477','TOYOTA', 1998);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into Insurance.car values('KA052250','INDICA', 1990);
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into Insurance.car values('KA053408','HONDA', 2008);
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert into Insurance.car values('KA041702','AUDI', 2005);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from Insurance.car;
++----------+--------+------+
+| regno    | model  | year |
++----------+--------+------+
+| &reg_num | &model |    1 |
+| KA031181 | Lancer | 1957 |
+| KA041702 | AUDI   | 2005 |
+| KA052250 | INDICA | 1990 |
+| KA053408 | HONDA  | 2008 |
+| KA095477 | TOYOTA | 1998 |
++----------+--------+------+
+6 rows in set (0.00 sec)
+
+mysql>
+mysql> create table Insurance.accident(report_number int,accident_date date,location varchar(15),primary
+    -> key(report_number));
+Query OK, 0 rows affected (0.38 sec)
+
+mysql> desc Insurance.accident;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| report_number | int         | NO   | PRI | NULL    |       |
+| accident_date | date        | YES  |     | NULL    |       |
+| location      | varchar(15) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into Insurance.accident values('11', STR_TO_DATE('01-01-2003', '%m-%d-%Y'),'MysoreRoad');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into Insurance.accident values('12', STR_TO_DATE('02-02-2004', '%m-%d-%Y'),'Southend');
+Query OK, 1 row affected (0.24 sec)
+
+mysql> insert into Insurance.accident values('13', STR_TO_DATE('06-01-2003', '%m-%d-%Y'),'Bulltemple');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into Insurance.accident values('14', STR_TO_DATE('05-02-2008', '%m-%d-%Y'),'Mysore');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into Insurance.accident values('15', STR_TO_DATE('04-03-2005', '%m-%d-%Y'),'Kanakpura');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from Insurance.accident;
++---------------+---------------+------------+
+| report_number | accident_date | location   |
++---------------+---------------+------------+
+|            11 | 2003-01-01    | MysoreRoad |
+|            12 | 2004-02-02    | Southend   |
+|            13 | 2003-06-01    | Bulltemple |
+|            14 | 2008-05-02    | Mysore     |
+|            15 | 2005-04-03    | Kanakpura  |
++---------------+---------------+------------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> create table Insurance.owns(driver_id varchar(10),regno varchar(10),primary
+    -> key(driver_id,regno),foreign key(driver_id) references person(driver_id),foreign key(regno)
+    -> references car(regno));
+Query OK, 0 rows affected (0.42 sec)
+
+mysql> desc Insurance.owns;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| driver_id | varchar(10) | NO   | PRI | NULL    |       |
+| regno     | varchar(10) | NO   | PRI | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into Insurance.owns values ('&driver_id','&reg_num');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into Insurance.owns values ('A01','KA052250');
+Query OK, 1 row affected (0.31 sec)
+
+mysql> insert into Insurance.owns values ('A02','KA053408');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into Insurance.owns values ('A04','KA031181');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into Insurance.owns values ('A03','KA095477');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into Insurance.owns values ('A05','KA041702');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from Insurance.owns;
++------------+----------+
+| driver_id  | regno    |
++------------+----------+
+| &driver_id | &reg_num |
+| A04        | KA031181 |
+| A05        | KA041702 |
+| A01        | KA052250 |
+| A02        | KA053408 |
+| A03        | KA095477 |
++------------+----------+
+6 rows in set (0.00 sec)
+
+mysql>
+mysql> create table Insurance.participated(driver_id varchar(10),regno varchar(10),report_number
+    -> int,damage_amount int,primary key(driver_id,regno,report_number),foreign key(driver_id)
+    -> references person(driver_id),foreign key(regno) references car(regno),foreign key(report_number)
+    -> references accident(report_number));
+Query OK, 0 rows affected (0.89 sec)
+
+mysql> desc Insurance.participated;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| driver_id     | varchar(10) | NO   | PRI | NULL    |       |
+| regno         | varchar(10) | NO   | PRI | NULL    |       |
+| report_number | int         | NO   | PRI | NULL    |       |
+| damage_amount | int         | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into Insurance.participated values('A01','KA052250',11,10000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into Insurance.participated values('A02','KA053408',12,50000);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into Insurance.participated values('A03' , 'KA095477' , '13' , '25000');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Insurance.participated values('A04', 'KA031181', '14' , '3000');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into Insurance.participated values('A05', 'KA041702', '15','5000');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from Insurance.participated;
++-----------+----------+---------------+---------------+
+| driver_id | regno    | report_number | damage_amount |
++-----------+----------+---------------+---------------+
+| A01       | KA052250 |            11 |         10000 |
+| A02       | KA053408 |            12 |         50000 |
+| A03       | KA095477 |            13 |         25000 |
+| A04       | KA031181 |            14 |          3000 |
+| A05       | KA041702 |            15 |          5000 |
++-----------+----------+---------------+---------------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> update Insurance.participated
+    -> set damage_amount=25000
+    -> where report_number=12 and regno='A02';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql>
+mysql> insert into Insurance.accident values('16', '2007-03-21','MysoreRoad');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into Insurance.participated values('A05', 'KA041702','16','5000');
+Query OK, 1 row affected (0.20 sec)
+
+mysql>
+mysql> select count(distinct o.driver_id) as People from Insurance.owns o,Insurance.participated
+    -> p,Insurance.accident a where a.accidentd_date like
+    -> '2008%' and o.regno=p.regno and p.report_number=a.report_number;
+
+mysql> use Insurance;
+Database changed
+mysql> select count(*) as Totalcars from car c,participated p where c.regno=p.regno and c.model='TOYOTA';
++-----------+
+| Totalcars |
++-----------+
+|         1 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql>
+
+
+BANKING DATABASE:-
+
+
+
+mysql> create database banking;
+ERROR 1007 (HY000): Can't create database 'banking'; database exists
+mysql> use banking;
+Database changed
+mysql> create table BRANCH(branch_name varchar(20),branch_city varchar(10),assets real,primary
+    -> key(branch_name));
+Query OK, 0 rows affected (1.31 sec)
+
+mysql> insert into BRANCH values('SBI_Chamrajpet','Bangalore',50000);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into BRANCH values('SBI_Residency road','Bangalore',10000);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into BRANCH values('SBI_shivajiroad','Bombay',20000);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into BRANCH values('SBI_parlimentroad','Delhi',10000);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into BRANCH values('SBI_jantarmantar','Delhi',20000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from BRANCH;
++--------------------+-------------+--------+
+| branch_name        | branch_city | assets |
++--------------------+-------------+--------+
+| SBI_Chamrajpet     | Bangalore   |  50000 |
+| SBI_jantarmantar   | Delhi       |  20000 |
+| SBI_parlimentroad  | Delhi       |  10000 |
+| SBI_Residency road | Bangalore   |  10000 |
+| SBI_shivajiroad    | Bombay      |  20000 |
++--------------------+-------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> create table ACCOUNTS(accno integer,branch_name varchar(20),balance real,primary
+    -> key(accno),foreign key(branch_name) references BRANCH(branch_name));
+Query OK, 0 rows affected (0.52 sec)
+
+mysql> insert into ACCOUNTS values('1','SBI_Chamrajpet','2000');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into ACCOUNTS values('2','SBI_Residency road','5000');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into ACCOUNTS values('3','SBI_shivajiroad','6000');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into ACCOUNTS values('4','SBI_parlimentroad','9000');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into ACCOUNTS values('5','SBI_jantarmantar','8000');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into ACCOUNTS values('6','SBI_shivajiroad','4000');
+Query OK, 1 row affected (0.21 sec)
+
+mysql> insert into ACCOUNTS values('8','SBI_Residency road','4000');
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into ACCOUNTS values('9','SBI_parlimentroad','3000');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into ACCOUNTS values('10','SBI_Residency road','5000');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into ACCOUNTS values('11','SBI_jantarmantar','2000');
+Query OK, 1 row affected (0.16 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from ACCOUNTS;
++-------+--------------------+---------+
+| accno | branch_name        | balance |
++-------+--------------------+---------+
+|     1 | SBI_Chamrajpet     |    2000 |
+|     2 | SBI_Residency road |    5000 |
+|     3 | SBI_shivajiroad    |    6000 |
+|     4 | SBI_parlimentroad  |    9000 |
+|     5 | SBI_jantarmantar   |    8000 |
+|     6 | SBI_shivajiroad    |    4000 |
+|     8 | SBI_Residency road |    4000 |
+|     9 | SBI_parlimentroad  |    3000 |
+|    10 | SBI_Residency road |    5000 |
+|    11 | SBI_jantarmantar   |    2000 |
++-------+--------------------+---------+
+10 rows in set (0.00 sec)
+
+mysql>
+mysql> create table BANKCUST(customername varchar(20),customerstreet varchar(30),customercity
+    -> varchar(30),primary key(customername));
+Query OK, 0 rows affected (0.59 sec)
+
+mysql> insert into BANKCUST values('AVINASH','Bulltemple','Bangalore');
+Query OK, 1 row affected (0.19 sec)
+
+mysql> insert into BANKCUST values('dinesh','banerghata','Bangalore');
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into BANKCUST values('mohan','mgroad','Bangalore');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into BANKCUST values('nikhil','churchstreeet','Delhi');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into BANKCUST values('ravi','akbarroad','Delhi');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from BANKCUST;
++--------------+----------------+--------------+
+| customername | customerstreet | customercity |
++--------------+----------------+--------------+
+| AVINASH      | Bulltemple     | Bangalore    |
+| dinesh       | banerghata     | Bangalore    |
+| mohan        | mgroad         | Bangalore    |
+| nikhil       | churchstreeet  | Delhi        |
+| ravi         | akbarroad      | Delhi        |
++--------------+----------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> create table DEPOSIT(customername varchar(20),accno integer,primary
+    -> key(accno,customername),foreign key(accno) references ACCOUNTS(accno),foreign
+    -> key(customername) references BANKCUST(customername));
+Query OK, 0 rows affected (0.74 sec)
+
+mysql> insert into DEPOSIT values('AVINASH',1);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into DEPOSIT values('dinesh',2);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into DEPOSIT values('nikhil',4);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into DEPOSIT values('ravi',5);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into DEPOSIT values('AVINASH',8);
+Query OK, 1 row affected (0.23 sec)
+
+mysql> insert into DEPOSIT values('nikhil',9);
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert into DEPOSIT values('dinesh',10);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into DEPOSIT values('nikhil',11);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from DEPOSIT;
++--------------+-------+
+| customername | accno |
++--------------+-------+
+| AVINASH      |     1 |
+| AVINASH      |     8 |
+| dinesh       |     2 |
+| dinesh       |    10 |
+| nikhil       |     4 |
+| nikhil       |     9 |
+| nikhil       |    11 |
+| ravi         |     5 |
++--------------+-------+
+8 rows in set (0.00 sec)
+
+mysql> CREATE TABLE LOAN(loanno int,branch_name varchar(20),amt real,primary key(loanno),foreign
+    -> key(branch_name) references BRANCH(branch_name));
+Query OK, 0 rows affected (0.51 sec)
+
+mysql> insert into LOAN values(1,'SBI_Chamrajpet',1000);
+Query OK, 1 row affected (0.24 sec)
+
+mysql> insert into LOAN values(2,'SBI_Residency road',2000);
+Query OK, 1 row affected (0.21 sec)
+
+mysql> insert into LOAN values(3,'SBI_shivajiroad',3000);
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert into LOAN values(4,'SBI_parlimentroad',4000);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into LOAN values(5,'SBI_jantarmantar',5000);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from LOAN;
++--------+--------------------+------+
+| loanno | branch_name        | amt  |
++--------+--------------------+------+
+|      1 | SBI_Chamrajpet     | 1000 |
+|      2 | SBI_Residency road | 2000 |
+|      3 | SBI_shivajiroad    | 3000 |
+|      4 | SBI_parlimentroad  | 4000 |
+|      5 | SBI_jantarmantar   | 5000 |
++--------+--------------------+------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> select customername from DEPOSIT d,ACCOUNTS a
+    -> where d.accno=a.accno
+    -> group by customername
+    -> having count(d.customername) >=2;
++--------------+
+| customername |
++--------------+
+| AVINASH      |
+| dinesh       |
+| nikhil       |
++--------------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql> select d.customername from DEPOSIT d,BRANCH b,ACCOUNTS a
+    -> where b.branch_name=a.branch_name
+    -> AND a.accno=d.accno
+    -> and branch_city='Delhi'
+    -> group by d.customername
+    -> HAVING COUNT(distinct b.branch_name)=(
+    ->  SELECT COUNT(branch_name)
+    ->  FROM branch
+    ->  WHERE branch_city='Delhi');
++--------------+
+| customername |
++--------------+
+| nikhil       |
++--------------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> delete from ACCOUNTS
+    -> where branch_name IN(SELECT branch_name FROM branch WHERE branch_city='Bombay');
+Query OK, 2 rows affected (0.11 sec)
+
+mysql> Select * from ACCOUNTS;
++-------+--------------------+---------+
+| accno | branch_name        | balance |
++-------+--------------------+---------+
+|     1 | SBI_Chamrajpet     |    2000 |
+|     2 | SBI_Residency road |    5000 |
+|     4 | SBI_parlimentroad  |    9000 |
+|     5 | SBI_jantarmantar   |    8000 |
+|     8 | SBI_Residency road |    4000 |
+|     9 | SBI_parlimentroad  |    3000 |
+|    10 | SBI_Residency road |    5000 |
+|    11 | SBI_jantarmantar   |    2000 |
++-------+--------------------+---------+
+
+
+
+
+
+SUPPLIER DATABASE:-
+
+
+mysql> create database SUPPLIER;
+Query OK, 1 row affected (0.21 sec)
+
+mysql> use SUPPLIER;
+Database changed
+mysql> create table SUPPLIERS(sid BIGINT(5) primary key, sname
+    -> varchar(20), city varchar(20));
+Query OK, 0 rows affected, 1 warning (0.90 sec)
+
+mysql> insert into SUPPLIERS values(10001,'Acme Widget','Bangalore');
+Query OK, 1 row affected (0.30 sec)
+
+mysql> insert into SUPPLIERS values(10002,'Johns ','Kolkata');
+Query OK, 1 row affected (0.25 sec)
+
+mysql> insert into SUPPLIERS values(10003,'Vimal','Mumbai');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into SUPPLIERS values(10004,'Reliance ','Delhi');
+Query OK, 1 row affected (0.24 sec)
+
+mysql> select * from SUPPLIERS;
++-------+-------------+-----------+
+| sid   | sname       | city      |
++-------+-------------+-----------+
+| 10001 | Acme Widget | Bangalore |
+| 10002 | Johns       | Kolkata   |
+| 10003 | Vimal       | Mumbai    |
+| 10004 | Reliance    | Delhi     |
++-------+-------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql>
+mysql> create table PARTS(pid BIGINT(5) primary key, pname varchar(20),
+    -> color varchar(10));
+Query OK, 0 rows affected, 1 warning (0.57 sec)
+
+mysql> insert into PARTS values(20001,'Book','RED');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into PARTS values(20002,'Pen','RED');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into PARTS values(20003,'Pencil','Green');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into PARTS values(20004,'Mobile ','Green');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into PARTS values(20005,'Charger','Black');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from PARTS;
++-------+---------+-------+
+| pid   | pname   | color |
++-------+---------+-------+
+| 20001 | Book    | RED   |
+| 20002 | Pen     | RED   |
+| 20003 | Pencil  | Green |
+| 20004 | Mobile  | Green |
+| 20005 | Charger | Black |
++-------+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> create table CATALOG(sid BIGINT(5), pid BIGINT(5), foreign key(sid)
+    -> references SUPPLIERS(sid), foreign key(pid) references PARTS(pid),
+    -> cost float(6), primary key(sid, pid));
+Query OK, 0 rows affected, 2 warnings (0.90 sec)
+
+mysql> insert into CATALOG values(10001,20001,10);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into CATALOG values(10001,20002,10);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into CATALOG values(10001,20003,30);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into CATALOG values(10001,20004,10);
+Query OK, 1 row affected (0.22 sec)
+
+mysql> insert into CATALOG values(10001,20005,10);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into CATALOG values(10002,20001,10);
+Query OK, 1 row affected (0.16 sec)
+
+mysql> insert into CATALOG values(10002,20002,20);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into CATALOG values(10003,20003,30);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into CATALOG values(10004,20003,40);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from CATALOG;
++-------+-------+------+
+| sid   | pid   | cost |
++-------+-------+------+
+| 10001 | 20001 |   10 |
+| 10001 | 20002 |   10 |
+| 10001 | 20003 |   30 |
+| 10001 | 20004 |   10 |
+| 10001 | 20005 |   10 |
+| 10002 | 20001 |   10 |
+| 10002 | 20002 |   20 |
+| 10003 | 20003 |   30 |
+| 10004 | 20003 |   40 |
++-------+-------+------+
+9 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT DISTINCT P.pname
+    ->  FROM Parts P, Catalog C
+    ->  WHERE P.pid = C.pid;
++---------+
+| pname   |
++---------+
+| Book    |
+| Pen     |
+| Pencil  |
+| Mobile  |
+| Charger |
++---------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> select S.sname from SUPPLIERS S where not exists (select P.pid from
+    -> PARTS P where not exists (select C.sid from CATALOG C where C.sid =
+    -> S.sid and C.pid = P.pid));
++-------------+
+| sname       |
++-------------+
+| Acme Widget |
++-------------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> select S.sname from SUPPLIERS S where not exists (select P.pid from
+    -> PARTS P where P.color = 'Red' and (not exists (select C.sid from
+    -> CATALOG C where C.sid = S.sid and C.pid = P.pid)));
++-------------+
+| sname       |
++-------------+
+| Acme Widget |
+| Johns       |
++-------------+
+2 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql> select P.pname from PARTS P, CATALOG C, SUPPLIERS S where P.pid
+    -> = C.pid and C.sid = S.sid and S.sname = 'Acme Widget' and not exists
+    -> (select * from CATALOG C1, SUPPLIERS S1 where P.pid = C1.pid and
+    -> C1.sid = S1.sid and S1.sname <> 'Acme Widget');
++---------+
+| pname   |
++---------+
+| Mobile  |
+| Charger |
++---------+
+2 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql> SELECT DISTINCT C.sid FROM Catalog C
+    -> WHERE C.cost > ( SELECT AVG (C1.cost)
+    -> FROM Catalog C1
+    -> WHERE C1.pid = C.pid );
++-------+
+| sid   |
++-------+
+| 10002 |
+| 10004 |
++-------+
+2 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql> SELECT P.pid, S.sname
+    -> FROM Parts P, Suppliers S, Catalog C
+    -> WHERE C.pid = P.pid
+    -> AND C.sid = S.sid
+    -> AND C.cost = (SELECT MAX(C1.cost)
+    -> FROM Catalog C1
+    -> WHERE C1.pid = P.pid);
++-------+-------------+
+| pid   | sname       |
++-------+-------------+
+| 20001 | Johns       |
+| 20001 | Acme Widget |
+| 20002 | Johns       |
+| 20003 | Reliance    |
+| 20004 | Acme Widget |
+| 20005 | Acme Widget |
++-------+-------------+
+
+
+STUDENT-FACULTY DATABASE:-
+
+
+mysql> CREATE DATABASE student_faculty;
+Query OK, 1 row affected (0.15 sec)
+
+mysql> USE student_faculty;
+Database changed
+mysql> CREATE TABLE student(
+    -> snum INT,
+    -> sname VARCHAR(10),
+    -> major VARCHAR(2),
+    -> lvl VARCHAR(2),
+    -> age INT, primary key(snum));
+Query OK, 0 rows affected (0.43 sec)
+
+mysql>
+mysql> CREATE TABLE faculty(
+    -> fid INT,fname VARCHAR(20),
+    -> deptid INT,
+    ->  PRIMARY KEY(fid));
+Query OK, 0 rows affected (1.15 sec)
+
+mysql>
+mysql> CREATE TABLE class(
+    -> cname VARCHAR(20),
+    -> metts_at TIMESTAMP,
+    -> room VARCHAR(10),
+    ->  fid INT,
+    -> PRIMARY KEY(cname),
+    -> FOREIGN KEY(fid) REFERENCES faculty(fid));
+Query OK, 0 rows affected (0.47 sec)
+
+mysql>
+mysql> CREATE TABLE enrolled(
+    -> snum INT,
+    -> cname VARCHAR(20),
+    -> PRIMARY KEY(snum,cname),
+    -> FOREIGN KEY(snum) REFERENCES student(snum),
+    -> FOREIGN KEY(cname) REFERENCES class(cname));
+Query OK, 0 rows affected (0.59 sec)
+
+mysql>
+mysql> INSERT INTO STUDENT VALUES(1, 'jhon', 'CS', 'Sr', 19);
+Query OK, 1 row affected (0.18 sec)
+
+mysql> INSERT INTO STUDENT VALUES(2, 'Smith', 'CS', 'Jr', 20);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> INSERT INTO STUDENT VALUES(3 , 'Jacob', 'CV', 'Sr', 20);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO STUDENT VALUES(4, 'Tom ', 'CS', 'Jr', 20);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> INSERT INTO STUDENT VALUES(5, 'Rahul', 'CS', 'Jr', 20);
+Query OK, 1 row affected (0.16 sec)
+
+mysql> INSERT INTO STUDENT VALUES(6, 'Rita', 'CS', 'Sr', 21);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> select * from STUDENT;
++------+-------+-------+------+------+
+| snum | sname | major | lvl  | age  |
++------+-------+-------+------+------+
+|    1 | jhon  | CS    | Sr   |   19 |
+|    2 | Smith | CS    | Jr   |   20 |
+|    3 | Jacob | CV    | Sr   |   20 |
+|    4 | Tom   | CS    | Jr   |   20 |
+|    5 | Rahul | CS    | Jr   |   20 |
+|    6 | Rita  | CS    | Sr   |   21 |
++------+-------+-------+------+------+
+6 rows in set (0.00 sec)
+
+mysql>
+mysql> INSERT INTO FACULTY VALUES(11, 'Harish', 1000);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO FACULTY VALUES(12, 'MV', 1000);
+Query OK, 1 row affected (0.22 sec)
+
+mysql> INSERT INTO FACULTY VALUES(13 , 'Mira', 1001);
+Query OK, 1 row affected (0.23 sec)
+
+mysql> INSERT INTO FACULTY VALUES(14, 'Shiva', 1002);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> INSERT INTO FACULTY VALUES(15, 'Nupur', 1000);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from FACULTY;
++-----+--------+--------+
+| fid | fname  | deptid |
++-----+--------+--------+
+|  11 | Harish |   1000 |
+|  12 | MV     |   1000 |
+|  13 | Mira   |   1001 |
+|  14 | Shiva  |   1002 |
+|  15 | Nupur  |   1000 |
++-----+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> insert into class values('class1', '12/11/15 10:15:16', 'R1', 14);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into class values('class10', '12/11/15 10:15:16', 'R128', 14);
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert into class values('class2', '12/11/15 10:15:20', 'R2', 12);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into class values('class3', '12/11/15 10:15:25', 'R3', 11);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into class values('class4', '12/11/15 20:15:20', 'R4', 14);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into class values('class5', '12/11/15 20:15:20', 'R3', 15);
+Query OK, 1 row affected (0.29 sec)
+
+mysql> insert into class values('class6', '12/11/15 13:20:20', 'R2', 14);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into class values('class7', '12/11/15 10:10:10', 'R3', 14);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from class;
++---------+---------------------+------+------+
+| cname   | metts_at            | room | fid  |
++---------+---------------------+------+------+
+| class1  | 2012-11-15 10:15:16 | R1   |   14 |
+| class10 | 2012-11-15 10:15:16 | R128 |   14 |
+| class2  | 2012-11-15 10:15:20 | R2   |   12 |
+| class3  | 2012-11-15 10:15:25 | R3   |   11 |
+| class4  | 2012-11-15 20:15:20 | R4   |   14 |
+| class5  | 2012-11-15 20:15:20 | R3   |   15 |
+| class6  | 2012-11-15 13:20:20 | R2   |   14 |
+| class7  | 2012-11-15 10:10:10 | R3   |   14 |
++---------+---------------------+------+------+
+8 rows in set (0.00 sec)
+
+mysql>
+mysql> insert into enrolled values(1, 'class1');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into enrolled values(2, 'class1');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into enrolled values(3, 'class3');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into enrolled values(4, 'class3');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into enrolled values(5, 'class4');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into enrolled values(1, 'class5');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into enrolled values(2, 'class5');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into enrolled values(3, 'class5');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into enrolled values(4, 'class5');
+Query OK, 1 row affected (0.21 sec)
+
+mysql> insert into enrolled values(5, 'class5');
+Query OK, 1 row affected (0.17 sec)
+
+mysql> select * from enrolled;
++------+--------+
+| snum | cname  |
++------+--------+
+|    1 | class1 |
+|    2 | class1 |
+|    3 | class3 |
+|    4 | class3 |
+|    5 | class4 |
+|    1 | class5 |
+|    2 | class5 |
+|    3 | class5 |
+|    4 | class5 |
+|    5 | class5 |
++------+--------+
+10 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT DISTINCT S.Sname
+    -> FROM Student S, Class C, Enrolled E, Faculty F
+    -> WHERE S.snum = E.snum AND E.cname = C.cname AND C.fid = F.fid AND
+    -> F.fname = 'Harish' AND S.lvl = 'Jr';
++-------+
+| Sname |
++-------+
+| Tom   |
++-------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> SELECT DISTINCT cname
+    -> FROM class
+    -> WHERE room='room128'
+    -> OR
+    -> cname IN (SELECT e.cname FROM enrolled e GROUP BY e.cname HAVING COUNT(*)>=5);
++--------+
+| cname  |
++--------+
+| class5 |
++--------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql>
+mysql> SELECT DISTINCT S.sname
+    -> FROM Student S
+    -> WHERE S.snum IN (SELECT E1.snum
+    -> FROM Enrolled E1, Enrolled E2, Class C1, Class C2
+    -> WHERE E1.snum = E2.snum AND E1.cname <> E2.cname
+    -> AND E1.cname = C1.cname
+    -> AND E2.cname = C2.cname AND C1.metts_at = C2.metts_at);
++-------+
+| sname |
++-------+
+| Rahul |
++-------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql>
+mysql> SELECT f.fname,f.fid
+    -> FROM faculty f
+    -> WHERE f.fid in ( SELECT fid FROM class
+    -> GROUP BY fid HAVING COUNT(*)=(SELECT COUNT(DISTINCT room) FROM class) );
++-------+-----+
+| fname | fid |
++-------+-----+
+| Shiva |  14 |
++-------+-----+
+1 row in set (0.00 sec)
+
+mysql>
+mysql>
+mysql> SELECT DISTINCT F.fname
+    -> FROM Faculty F
+    -> WHERE 5 > (SELECT COUNT(E.snum)
+    -> FROM Class C, Enrolled E
+    -> WHERE C.cname = E.cname
+    -> AND C.fid = F.fid);
++--------+
+| fname  |
++--------+
+| Harish |
+| MV     |
+| Mira   |
+| Shiva  |
++--------+
+4 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql> SELECT DISTINCT S.sname
+    -> FROM Student S
+    -> WHERE S.snum NOT IN (SELECT E.snum
+    -> FROM Enrolled E );
++-------+
+| sname |
++-------+
+| Rita  |
++-------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql>
+mysql> SELECT S.age, S.lvl
+    -> FROM STUDENT S
+    -> GROUP BY S.age, S.lvl
+    -> HAVING S.lvl IN (SELECT S1.lvl
+    -> FROM STUDENT S1
+    -> WHERE S1.age=S.age
+    -> GROUP BY S1.age, S1.lvl
+    -> HAVING COUNT(*) >= ALL (SELECT COUNT(*)
+    -> FROM STUDENT S2
+    -> WHERE S1.age=S2.age
+    -> GROUP BY S2.lvl, S2.age))
+    -> ORDER BY S.age;
++------+------+
+| age  | lvl  |
++------+------+
+|   19 | Sr   |
+|   20 | Jr   |
+|   21 | Sr   |
++------+------+
+
+
+
+FLIGHT DATABASE:-
+
+mysql> create database flightdb;
+Query OK, 1 row affected (0.20 sec)
+
+mysql> use flightdb;
+Database changed
+mysql>
+mysql> create table flights(
+    -> flno int,
+    ->     fromplace varchar(15),
+    ->     toplace varchar(15),
+    ->     distance int,
+    ->     departs datetime,
+    ->     arrives datetime,
+    ->     price int,
+    ->     primary key (flno)
+    -> );
+Query OK, 0 rows affected (0.67 sec)
+
+mysql> desc flights;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| flno      | int         | NO   | PRI | NULL    |       |
+| fromplace | varchar(15) | YES  |     | NULL    |       |
+| toplace   | varchar(15) | YES  |     | NULL    |       |
+| distance  | int         | YES  |     | NULL    |       |
+| departs   | datetime    | YES  |     | NULL    |       |
+| arrives   | datetime    | YES  |     | NULL    |       |
+| price     | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.09 sec)
+
+mysql> create table aircraft(
+    -> aid int,
+    ->     aname varchar(15),
+    ->     cruisingrange int,
+    ->     primary key (aid)
+    -> );
+Query OK, 0 rows affected (1.19 sec)
+
+mysql> desc aircraft;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| aid           | int         | NO   | PRI | NULL    |       |
+| aname         | varchar(15) | YES  |     | NULL    |       |
+| cruisingrange | int         | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create table employees (
+    -> eid int,
+    ->     ename varchar(15),
+    ->     salary int,
+    ->     primary key (eid)
+    -> );
+Query OK, 0 rows affected (0.40 sec)
+
+mysql> desc employees;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int         | NO   | PRI | NULL    |       |
+| ename  | varchar(15) | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create table certified (
+    -> eid int,
+    ->     aid int,
+    ->     foreign key (eid) references employees(eid),
+    ->     foreign key (aid) references aircraft(aid)
+    -> );
+Query OK, 0 rows affected (0.95 sec)
+
+mysql> desc certified;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| eid   | int  | YES  | MUL | NULL    |       |
+| aid   | int  | YES  | MUL | NULL    |       |
++-------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into flights values(101, 'Bangalore', 'Delhi', 2500, '2005-05-13 07:15:31', '2005-05-13 18:15:31', 5000);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into flights values(102, 'Bangalore', 'Lucknow', 3000, '2013-05-05 07:15:31', '2013-05-05 11:15:31', 6000);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into flights values(103, 'Lucknow', 'Delhi', 500, '2013-05-05 12:15:31', '2013-05-05 17:15:31', 3000);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into flights values(107, 'Bangalore', 'Frankfurt', 8000, '2013-05-05 07:15:31', '2013-05-05 22:15:31', 60000);
+Query OK, 1 row affected (0.23 sec)
+
+mysql> insert into flights values(104, 'Bangalore', 'Frankfurt', 8500, '2013-05-05 07:15:31', '2013-05-05 23:15:31', 75000);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into flights values(105, 'Kolkata', 'Delhi', 3400, '2013-05-05 07:15:31', '2013-05-05 09:15:31', 7000);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into flights values(106, 'Bangalore', 'Kolkata', 1000, '2013-05-05 01:15:30', '2013-05-05 09:20:30', 10000);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into flights values(108, 'Lucknow', 'Kolkata', 1000, '2013-05-05 11:30:30', '2013-05-05 15:20:30', 10000);
+Query OK, 1 row affected (0.13 sec)
+
+mysql>
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>
+mysql> select * from flights;
++------+-----------+-----------+----------+---------------------+---------------------+-------+
+| flno | fromplace | toplace   | distance | departs             | arrives             | price |
++------+-----------+-----------+----------+---------------------+---------------------+-------+
+|  101 | Bangalore | Delhi     |     2500 | 2005-05-13 07:15:31 | 2005-05-13 18:15:31 |  5000 |
+|  102 | Bangalore | Lucknow   |     3000 | 2013-05-05 07:15:31 | 2013-05-05 11:15:31 |  6000 |
+|  103 | Lucknow   | Delhi     |      500 | 2013-05-05 12:15:31 | 2013-05-05 17:15:31 |  3000 |
+|  104 | Bangalore | Frankfurt |     8500 | 2013-05-05 07:15:31 | 2013-05-05 23:15:31 | 75000 |
+|  105 | Kolkata   | Delhi     |     3400 | 2013-05-05 07:15:31 | 2013-05-05 09:15:31 |  7000 |
+|  106 | Bangalore | Kolkata   |     1000 | 2013-05-05 01:15:30 | 2013-05-05 09:20:30 | 10000 |
+|  107 | Bangalore | Frankfurt |     8000 | 2013-05-05 07:15:31 | 2013-05-05 22:15:31 | 60000 |
+|  108 | Lucknow   | Kolkata   |     1000 | 2013-05-05 11:30:30 | 2013-05-05 15:20:30 | 10000 |
++------+-----------+-----------+----------+---------------------+---------------------+-------+
+8 rows in set (0.00 sec)
+
+mysql>
+mysql> insert into aircraft values(101, '747', 3000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into aircraft values(102, 'Boeing', 900);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into aircraft values(103, '647', 800);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into aircraft values(104, 'Dreamliner', 10000);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into aircraft values(105, 'Boeing', 3500);
+Query OK, 1 row affected (0.22 sec)
+
+mysql> insert into aircraft values(106, '707', 1500);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into aircraft values(107, 'Dream', 120000);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into aircraft values(108, '707', 760);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into aircraft values(109, '747', 1000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>
+mysql> select * from aircraft;
++-----+------------+---------------+
+| aid | aname      | cruisingrange |
++-----+------------+---------------+
+| 101 | 747        |          3000 |
+| 102 | Boeing     |           900 |
+| 103 | 647        |           800 |
+| 104 | Dreamliner |         10000 |
+| 105 | Boeing     |          3500 |
+| 106 | 707        |          1500 |
+| 107 | Dream      |        120000 |
+| 108 | 707        |           760 |
+| 109 | 747        |          1000 |
++-----+------------+---------------+
+9 rows in set (0.00 sec)
+
+mysql>
+mysql> insert into employees values(701, 'A', 50000);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into employees values(702, 'B', 100000);
+Query OK, 1 row affected (0.23 sec)
+
+mysql> insert into employees values(703, 'C', 150000);
+Query OK, 1 row affected (0.24 sec)
+
+mysql> insert into employees values(704, 'D', 90000);
+Query OK, 1 row affected (0.18 sec)
+
+mysql> insert into employees values(705, 'E', 40000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into employees values(706, 'F', 60000);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into employees values(707, 'G', 90000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>
+mysql> select * from employees;
++-----+-------+--------+
+| eid | ename | salary |
++-----+-------+--------+
+| 701 | A     |  50000 |
+| 702 | B     | 100000 |
+| 703 | C     | 150000 |
+| 704 | D     |  90000 |
+| 705 | E     |  40000 |
+| 706 | F     |  60000 |
+| 707 | G     |  90000 |
++-----+-------+--------+
+7 rows in set (0.00 sec)
+
+mysql>
+mysql> insert into certified values(701, 101);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into certified values(701, 102);
+Query OK, 1 row affected (0.16 sec)
+
+mysql> insert into certified values(701, 106);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into certified values(701, 105);
+Query OK, 1 row affected (0.17 sec)
+
+mysql>
+mysql> insert into certified values(702, 104);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into certified values(703, 104);
+Query OK, 1 row affected (0.22 sec)
+
+mysql> insert into certified values(704, 104);
+Query OK, 1 row affected (0.06 sec)
+
+mysql>
+mysql> insert into certified values(702, 107);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into certified values(703, 107);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into certified values(704, 107);
+Query OK, 1 row affected (0.06 sec)
+
+mysql>
+mysql> insert into certified values(702, 101);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into certified values(702, 108);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into certified values(701, 109);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from certified;
++------+------+
+| eid  | aid  |
++------+------+
+|  701 |  101 |
+|  701 |  102 |
+|  701 |  106 |
+|  701 |  105 |
+|  702 |  104 |
+|  703 |  104 |
+|  704 |  104 |
+|  702 |  107 |
+|  703 |  107 |
+|  704 |  107 |
+|  702 |  101 |
+|  702 |  108 |
+|  701 |  109 |
++------+------+
+13 rows in set (0.00 sec)
+
+mysql>
+mysql> -- Query 1
+mysql> select distinct a.aname from aircraft a where a.aid in (
+    -> select c.aid from certified c, employees e where
+    ->     c.eid = e.eid and not exists(
+    -> select * from employees e1 where e1.eid=e.eid and e1.salary<80000
+    ->     )
+    -> );
++------------+
+| aname      |
++------------+
+| 747        |
+| Dreamliner |
+| Dream      |
+| 707        |
++------------+
+4 rows in set (0.00 sec)
+
+mysql>
+mysql> -- Query 2
+mysql> select max(a.cruisingrange), c.eid from certified c, aircraft a where c.aid = a.aid group by c.eid having count(c.eid)>3;
++----------------------+------+
+| max(a.cruisingrange) | eid  |
++----------------------+------+
+|                 3500 |  701 |
+|               120000 |  702 |
++----------------------+------+
+2 rows in set (0.00 sec)
+
+mysql>
+mysql> -- Query 3
+mysql> select ename from employees where salary <(
+    -> select min(price) from flights where fromplace='Bangalore' and toplace='Frankfurt');
++-------+
+| ename |
++-------+
+| A     |
+| E     |
++-------+
+2 rows in set (0.00 sec)
+
+mysql>
+mysql> -- Query 4
+mysql>
+mysql> select avg(e.salary), c.aid from certified c, employees e where c.aid in(
+    -> select aid from aircraft where cruisingrange>1000) and e.eid = c.eid group by c.aid;
++---------------+------+
+| avg(e.salary) | aid  |
++---------------+------+
+|    75000.0000 |  101 |
+|   113333.3333 |  104 |
+|    50000.0000 |  105 |
+|    50000.0000 |  106 |
+|   113333.3333 |  107 |
++---------------+------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> -- Query 5
+mysql> select ename from employees where eid in(
+    -> select eid from certified where aid in(
+    -> select aid from aircraft where aname = 'Boeing'));
++-------+
+| ename |
++-------+
+| A     |
++-------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> -- Query 6
+mysql>
+mysql> select aname from aircraft where cruisingrange > any (select distance from flights where fromplace='Bangalore' and toplace='Delhi');
++------------+
+| aname      |
++------------+
+| 747        |
+| Dreamliner |
+| Boeing     |
+| Dream      |
++------------+
+4 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql> -- Query 7
+mysql> SELECT F.flno, F.departs
+    -> FROM flights F
+    -> WHERE F.flno IN ( ( SELECT F0.flno
+    ->  FROM flights F0
+    ->  WHERE F0.fromplace = 'Bangalore' AND F0.toplace = 'Kolkata'
+    ->  AND extract(hour from F0.arrives) < 18 )
+    ->  UNION
+    -> ( SELECT F0.flno
+    ->  FROM flights F0, flights F1
+    ->  WHERE F0.fromplace = 'Bangalore' AND F0.toplace <> 'Kolkata'
+    ->  AND F0.toplace = F1.fromplace AND F1.toplace = 'Kolkata'
+    ->  AND F1.departs > F0.arrives
+    ->  AND extract(hour from F1.arrives) < 18)
+    ->  UNION
+    -> ( SELECT F0.flno
+    ->  FROM flights F0, flights F1, flights F2
+    ->  WHERE F0.fromplace = 'Bangalore'
+    ->  AND F0.toplace = F1.fromplace
+    ->  AND F1.toplace = F2.fromplace
+    ->  AND F2.toplace = 'Kolkata'
+    ->  AND F0.toplace <> 'Kolkata'
+    ->  AND F1.toplace <> 'Kolkata'
+    ->  AND F1.departs > F0.arrives
+    ->  AND F2.departs > F1.arrives
+    ->  AND extract(hour from F2.arrives) < 18));
++------+---------------------+
+| flno | departs             |
++------+---------------------+
+|  102 | 2013-05-05 07:15:31 |
+|  106 | 2013-05-05 01:15:30 |
++------+---------------------+
+
+
+
